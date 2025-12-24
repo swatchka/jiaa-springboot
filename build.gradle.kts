@@ -1,18 +1,25 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
+    java
+    id("org.springframework.boot") version "4.0.1" apply false
+    id("io.spring.dependency-management") version "1.1.7" apply false
 }
 
-group = "io.github.jiwon-tech-innovation"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
+allprojects {
+    group = "io.github.jiwon-tech-innovation"
+    version = "1.0-SNAPSHOT"
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "io.spring.dependency-management")
 
-tasks.test {
-    useJUnitPlatform()
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(25)
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
