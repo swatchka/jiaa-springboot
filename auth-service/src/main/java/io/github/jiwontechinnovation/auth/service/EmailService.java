@@ -74,12 +74,21 @@ public class EmailService {
     @Async("emailTaskExecutor")
     public void sendEmail(String email, String code, EmailType emailType) {
         try {
+            // 개발 환경: 로그 출력
+            log.info("========================================");
+            log.info("📧 [DEV] Email Verification Code");
+            log.info("To: {}", email);
+            log.info("Code: {}", code);
+            log.info("========================================");
+            
+            // 실제 메일 발송
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
             message.setSubject(emailType.getSubject());
             message.setText(emailType.getBody(code));
             mailSender.send(message);
-            log.info("{} - email: {}", emailType.getSuccessLog(), email);
+            
+            log.info("{} - email: {}, code: {}", emailType.getSuccessLog(), email, code);
         } catch (Exception e) {
             log.error("{} - email: {}", emailType.getErrorLog(), email, e);
         }

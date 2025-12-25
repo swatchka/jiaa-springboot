@@ -14,37 +14,37 @@ public class GatewayConfig {
                 // Auth Service
                 .route("auth-service", r -> r
                         .path("/api/v1/auth/**")
-                        .uri("lb://AUTH-SERVICE"))
+                        .uri("lb://auth-service"))
                 .route("auth-service-swagger", r -> r
                         .path("/auth-service/v3/api-docs/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://AUTH-SERVICE"))
+                        .uri("lb://auth-service"))
                 // User Service
                 .route("user-service", r -> r
                         .path("/api/v1/users/**")
-                        .uri("lb://USER-SERVICE"))
+                        .uri("lb://user-service"))
                 .route("user-service-swagger", r -> r
                         .path("/user-service/v3/api-docs/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://USER-SERVICE"))
+                        .uri("lb://user-service"))
                 // Goal Service
                 .route("goal-service", r -> r
                         .path("/api/goal/**")
                         .filters(f -> f.stripPrefix(2))
-                        .uri("lb://GOAL-SERVICE"))
+                        .uri("lb://goal-service"))
                 .route("goal-service-swagger", r -> r
                         .path("/goal-service/v3/api-docs/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://GOAL-SERVICE"))
+                        .uri("lb://goal-service"))
                 // Analysis Service
                 .route("analysis-service", r -> r
                         .path("/api/analysis/**")
                         .filters(f -> f.stripPrefix(2))
-                        .uri("lb://ANALYSIS-SERVICE"))
+                        .uri("lb://analysis-service"))
                 .route("analysis-service-swagger", r -> r
                         .path("/analysis-service/v3/api-docs/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://ANALYSIS-SERVICE"))
+                        .uri("lb://analysis-service"))
                 .build();
     }
 }
