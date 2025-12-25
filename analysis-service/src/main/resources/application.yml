@@ -1,14 +1,14 @@
 server:
-  port: 8084
+  port: 8080
   forward-headers-strategy: framework
 
 spring:
   application:
     name: analysis-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/jiwon-tech-innovation
-    username: shinseungmin
-    password: shinSHIN1212!!
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/jiwon-tech-innovation}
+    username: ${SPRING_DATASOURCE_USERNAME:shinseungmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -26,6 +26,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
 springdoc:
   api-docs:

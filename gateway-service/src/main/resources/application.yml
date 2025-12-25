@@ -8,7 +8,8 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: false
+          enabled: true
+          lower-case-service-id: true
 
 eureka:
   client:
@@ -16,6 +17,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
 management:
   endpoint:
@@ -39,3 +42,9 @@ springdoc:
         url: /goal-service/v3/api-docs
       - name: analysis-service
         url: /analysis-service/v3/api-docs
+    # Swagger UI에서 사용할 서버 URL (localhost로 고정)
+    config-url: /v3/api-docs/swagger-config
+    url: /v3/api-docs
+  # 모든 서비스의 서버 URL을 localhost로 오버라이드
+  override-with-generic-response: false
+  use-management-port: false
